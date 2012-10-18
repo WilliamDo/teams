@@ -9,7 +9,6 @@ public class Teams implements EntryPoint {
 	public void onModuleLoad() {
 		HomeLayout homeLayout = new HomeLayout();
 		RootLayoutPanel.get().add(homeLayout);
-		
 	}
 
 }

@@ -1,0 +1,50 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+	</ui:style>
+	<g:DecoratorPanel>
+		<g:FormPanel ui:field="form">
+			<g:HTMLPanel>
+				<table>
+					<tr>
+						<td>First name</td>
+						<td>
+							<g:TextBox ui:field="firstNameTextBox" />
+						</td>
+					</tr>
+
+					<tr>
+						<td>Surname</td>
+						<td>
+							<g:TextBox ui:field="surnameTextBox" />
+						</td>
+					</tr>
+
+					<tr>
+						<td>Email</td>
+						<td>
+							<g:TextBox ui:field="emailTextBox" />
+						</td>
+					</tr>
+
+					<tr>
+						<td>Photo</td>
+						<td>
+							<g:FileUpload ui:field="imageUpload" />
+						</td>
+					</tr>
+
+					<tr colspan='2'>
+						<td>
+							<g:Button styleName="{style.important}" ui:field="submitButton">Submit</g:Button>
+						</td>
+					</tr>
+				</table>
+			</g:HTMLPanel>
+		</g:FormPanel>
+	</g:DecoratorPanel>
+</ui:UiBinder> 
