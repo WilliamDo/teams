@@ -13,28 +13,28 @@
 					<tr>
 						<td>First name</td>
 						<td>
-							<g:TextBox ui:field="firstNameTextBox" />
+							<g:TextBox ui:field="firstNameTextBox" name="firstName" />
 						</td>
 					</tr>
 
 					<tr>
 						<td>Surname</td>
 						<td>
-							<g:TextBox ui:field="surnameTextBox" />
+							<g:TextBox ui:field="surnameTextBox" name="surname" />
 						</td>
 					</tr>
 
 					<tr>
 						<td>Email</td>
 						<td>
-							<g:TextBox ui:field="emailTextBox" />
+							<g:TextBox ui:field="emailTextBox" name="emailAddress" />
 						</td>
 					</tr>
 
 					<tr>
 						<td>Photo</td>
 						<td>
-							<g:FileUpload ui:field="imageUpload" />
+							<g:FileUpload ui:field="imageUpload" name="imageUpload" />
 						</td>
 					</tr>
 

@@ -30,4 +30,54 @@
     <url-pattern>/_ah/spi/*</url-pattern>
   </servlet-mapping>
 
+
+  <servlet>
+    <servlet-name>dataServiceServlet</servlet-name>
+    <servlet-class>mog.net.teams.server.DataServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>dataServiceServlet</servlet-name>
+    <url-pattern>/teams/data</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>uploadPlayerServlet</servlet-name>
+    <servlet-class>mog.net.teams.server.UploadPlayer</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>uploadPlayerServlet</servlet-name>
+    <url-pattern>/uploadPlayer</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>serveBlobServlet</servlet-name>
+    <servlet-class>mog.net.teams.server.ServeBlob</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>serveBlobServlet</servlet-name>
+    <url-pattern>/serveBlob</url-pattern>
+  </servlet-mapping>
+
+  <!-- Enable Objectify -->
+  <filter>
+    <filter-name>ObjectifyFilter</filter-name>
+    <filter-class>com.googlecode.objectify.ObjectifyFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>ObjectifyFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <servlet>
+    <servlet-name>startupServlet</servlet-name>
+    <servlet-class>mog.net.teams.server.StartupServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>startupServlet</servlet-name>
+    <url-pattern>/startup</url-pattern>
+  </servlet-mapping>
+
 </web-app>

@@ -1,6 +1,7 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:h="urn:import:mog.net.teams.client">
 
 	<ui:style>
 		
@@ -28,9 +29,9 @@
 				</g:stack>
 			</g:StackLayoutPanel>
 		</g:west>
-		<g:south size='106'>
-			<g:FlexTable>
-			</g:FlexTable>
+
+		<g:south size = "106">
+			<g:SimplePanel ui:field="southPanel"></g:SimplePanel>
 		</g:south>
 	</g:SplitLayoutPanel>
 </ui:UiBinder> 
