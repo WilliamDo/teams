@@ -1,7 +1,7 @@
 package mog.net.teams.client;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.shared.HandlerManager;
+import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
@@ -21,10 +21,10 @@ public class HomeLayout extends Composite {
 	
 	@UiField SimplePanel southPanel;
 	
-	public HomeLayout(HandlerManager eventBus) {
+	public HomeLayout(EventBus eventBus, TeamLineup teamWidget, NewPlayer newPlayerWidget) {
 		initWidget(uiBinder.createAndBindUi(this));
-		southPanel.setWidget(new TeamLineup(eventBus));
-		centerScrollPanel.setWidget(new NewPlayer(eventBus));
+		southPanel.setWidget(teamWidget);
+		centerScrollPanel.setWidget(newPlayerWidget);
 		
 	}
 

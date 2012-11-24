@@ -1,11 +1,10 @@
 package mog.net.teams.client;
 
 import mog.net.teams.client.event.SavePlayerCompleteEvent;
-import mog.net.teams.client.event.SavePlayerCompleteEventHandler;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.shared.HandlerManager;
+import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -30,9 +29,9 @@ public class NewPlayer extends Composite {
 	interface NewPlayerUiBinder extends UiBinder<Widget, NewPlayer> {
 	}
 	
-	private final HandlerManager eventBus;
+	private final EventBus eventBus;
 
-	public NewPlayer(final HandlerManager eventBus) {
+	public NewPlayer(final EventBus eventBus) {
 		initWidget(uiBinder.createAndBindUi(this));
 		this.eventBus = eventBus;
 		

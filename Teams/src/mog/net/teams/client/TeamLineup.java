@@ -6,7 +6,7 @@ import mog.net.teams.client.event.SavePlayerCompleteEvent;
 import mog.net.teams.client.event.SavePlayerCompleteEventHandler;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.shared.HandlerManager;
+import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -25,11 +25,11 @@ public class TeamLineup extends Composite {
 	
 	private static DataServiceAsync dataService = GWT.create(DataService.class);
 	
-	private HandlerManager eventBus;
+	private EventBus eventBus;
 	
 	@UiField FlexTable teamTable;
 
-	public TeamLineup(HandlerManager eventBus) {
+	public TeamLineup(EventBus eventBus) {
 		initWidget(uiBinder.createAndBindUi(this));
 		this.eventBus = eventBus;
 		drawPlayers();
