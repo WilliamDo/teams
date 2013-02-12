@@ -1,5 +1,7 @@
-package mog.net.teams.client;
+package mog.net.teams.client.ui;
 
+import mog.net.teams.client.DataService;
+import mog.net.teams.client.DataServiceAsync;
 import mog.net.teams.client.event.SavePlayerCompleteEvent;
 
 import com.google.gwt.core.client.GWT;

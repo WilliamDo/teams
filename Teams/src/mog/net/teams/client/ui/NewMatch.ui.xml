@@ -1,0 +1,40 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		
+	</ui:style>
+	<g:DecoratorPanel>
+			<g:HTMLPanel>
+				<table>
+					<tr>
+						<td>Team</td>
+						<td>
+							<g:TextBox ui:field="teamName" name="teamName" />
+						</td>
+					</tr>
+
+					<tr>
+						<td>Venue</td>
+						<td>
+							<g:RadioButton name="venue" text="Home"></g:RadioButton>
+							<g:RadioButton name="venue" text="Away"></g:RadioButton>
+						</td>
+					</tr>
+
+					<tr>
+						<td>Date</td>
+						<td>
+							<g:HTMLPanel ui:field="dateControl"></g:HTMLPanel>
+						</td>
+					</tr>
+
+					<tr colspan='2'>
+						<td>
+							<g:Button ui:field="submitButton">Submit</g:Button>
+						</td>
+					</tr>
+				</table>
+			</g:HTMLPanel>
+	</g:DecoratorPanel>
+</ui:UiBinder> 

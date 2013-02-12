@@ -1,7 +1,10 @@
-package mog.net.teams.client;
+package mog.net.teams.client.ui;
 
 import java.util.List;
 
+import mog.net.teams.client.DataService;
+import mog.net.teams.client.DataServiceAsync;
+import mog.net.teams.client.Player;
 import mog.net.teams.client.event.SavePlayerCompleteEvent;
 import mog.net.teams.client.event.SavePlayerCompleteEventHandler;
 
@@ -11,7 +14,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -25,16 +28,13 @@ public class TeamLineup extends Composite {
 	
 	private static DataServiceAsync dataService = GWT.create(DataService.class);
 	
-	private EventBus eventBus;
-	
-	@UiField FlexTable teamTable;
+	@UiField FlowPanel teamTable;
 
 	public TeamLineup(EventBus eventBus) {
 		initWidget(uiBinder.createAndBindUi(this));
-		this.eventBus = eventBus;
 		drawPlayers();
 		
-		this.eventBus.addHandler(SavePlayerCompleteEvent.TYPE, new SavePlayerCompleteEventHandler() {
+		eventBus.addHandler(SavePlayerCompleteEvent.TYPE, new SavePlayerCompleteEventHandler() {
 			@Override
 			public void onSavePlayerComplete() {
 				drawPlayers();
@@ -43,14 +43,20 @@ public class TeamLineup extends Composite {
 		
 	}
 	
+	// Non-refreshing panel
+	public TeamLineup() {
+		initWidget(uiBinder.createAndBindUi(this));
+		drawPlayers();
+	}
+	
 	public void drawPlayers() {
 		dataService.getPlayers(new AsyncCallback<List<Player>>() {
 			
 			@Override
 			public void onSuccess(List<Player> result) {
 				teamTable.clear();
-				for (int i = 0; i < result.size(); i++) {
-					teamTable.setWidget(0, i + 1, new Image("/serveBlob?key=" + result.get(i).getImageKey()));
+				for (Player p : result) {
+					teamTable.add(new Image("/serveBlob?key=" + p.getImageKey()));
 				}
 			}
 			

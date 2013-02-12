@@ -10,6 +10,7 @@ public class StartupServlet extends HttpServlet {
 
 	static {
 		ObjectifyService.register(Player.class);
+		ObjectifyService.register(Match.class);
 	}
 	
 }

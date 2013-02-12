@@ -9,6 +9,7 @@ import com.googlecode.objectify.ObjectifyService;
 public class OfyService {
 	static {
 		factory().register(Player.class);
+		factory().register(Match.class);
 	}
 
 	public static Objectify ofy() {

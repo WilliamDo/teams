@@ -30,7 +30,7 @@
 			</g:StackLayoutPanel>
 		</g:west>
 
-		<g:south size = "106">
+		<g:south size="106">
 			<g:SimplePanel ui:field="southPanel"></g:SimplePanel>
 		</g:south>
 	</g:SplitLayoutPanel>

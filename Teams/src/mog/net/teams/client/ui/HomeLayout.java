@@ -1,4 +1,4 @@
-package mog.net.teams.client;
+package mog.net.teams.client.ui;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
@@ -21,10 +21,10 @@ public class HomeLayout extends Composite {
 	
 	@UiField SimplePanel southPanel;
 	
-	public HomeLayout(EventBus eventBus, TeamLineup teamWidget, NewPlayer newPlayerWidget) {
+	public HomeLayout(EventBus eventBus, Widget southWidget, Widget mainWidget) {
 		initWidget(uiBinder.createAndBindUi(this));
-		southPanel.setWidget(teamWidget);
-		centerScrollPanel.setWidget(newPlayerWidget);
+		southPanel.setWidget(southWidget);
+		centerScrollPanel.setWidget(mainWidget);
 		
 	}
 
