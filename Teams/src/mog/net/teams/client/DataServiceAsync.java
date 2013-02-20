@@ -15,5 +15,7 @@ public interface DataServiceAsync {
 	void getMatches(AsyncCallback<List<MatchWrapper>> callback);
 	
 	void saveMatch(MatchWrapper match, AsyncCallback<Void> callback);
+	
+	void saveMatchPlayer(int order, long matchId, long playerId, AsyncCallback<Void> callback);
 
 }

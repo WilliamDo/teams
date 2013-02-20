@@ -41,6 +41,12 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 			MatchWrapper matchWrapper = new MatchWrapper();
 			matchWrapper.setTeam(match.getTeam());
 			matchWrapper.setDate(match.getDate());
+			matchWrapper.setId(match.getId());
+			
+			matchWrapper.setPlayer1(match.getPlayer1());
+			matchWrapper.setPlayer2(match.getPlayer2());
+			matchWrapper.setPlayer3(match.getPlayer3());
+			
 			matches.add(matchWrapper);
 		}
 		
@@ -54,6 +60,21 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 		match.setTeam(newMatch.getTeam());
 		match.setDate(newMatch.getDate());
 		ofy().save().entity(match);
+		
+	}
+
+	@Override
+	public void saveMatchPlayer(int order, long matchId, long playerId) {
+		Player p = ofy().load().type(Player.class).id(playerId).get();
+		
+		Match m = ofy().load().type(Match.class).id(matchId).get();
+		switch (order) {
+		case 1: m.setPlayer1(p); break;
+		case 2: m.setPlayer2(p); break;
+		case 3: m.setPlayer3(p); break;
+		}
+		
+		ofy().save().entity(m);
 		
 	}
 

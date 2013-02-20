@@ -13,6 +13,7 @@ public class MatchWrapper implements Serializable {
 	
 	private String team;
 	private Date date;
+	private Long id;
 	
 	public Date getDate() {
 		return date;
@@ -64,6 +65,14 @@ public class MatchWrapper implements Serializable {
 	
 	public String getTeam() {
 		return this.team;
+	}
+
+	public Long getId() {
+		return this.id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	

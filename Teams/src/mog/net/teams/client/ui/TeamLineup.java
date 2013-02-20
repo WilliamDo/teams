@@ -9,6 +9,8 @@ import mog.net.teams.client.event.SavePlayerCompleteEvent;
 import mog.net.teams.client.event.SavePlayerCompleteEventHandler;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -26,13 +28,19 @@ public class TeamLineup extends Composite {
 	interface TeamLineupUiBinder extends UiBinder<Widget, TeamLineup> {
 	}
 	
-	private static DataServiceAsync dataService = GWT.create(DataService.class);
+	private static final DataServiceAsync dataService = GWT.create(DataService.class);
+	
+	private final Long matchId;
+	private final int order;
 	
 	@UiField FlowPanel teamTable;
 
 	public TeamLineup(EventBus eventBus) {
 		initWidget(uiBinder.createAndBindUi(this));
 		drawPlayers();
+		
+		this.matchId = null;
+		this.order = -1; // Error
 		
 		eventBus.addHandler(SavePlayerCompleteEvent.TYPE, new SavePlayerCompleteEventHandler() {
 			@Override
@@ -43,9 +51,11 @@ public class TeamLineup extends Composite {
 		
 	}
 	
-	// Non-refreshing panel
-	public TeamLineup() {
+	// Non-refreshing panel for use by selecting player
+	public TeamLineup(Long matchId, int playerOrder) {
 		initWidget(uiBinder.createAndBindUi(this));
+		this.matchId = matchId;
+		this.order = playerOrder;
 		drawPlayers();
 	}
 	
@@ -56,12 +66,38 @@ public class TeamLineup extends Composite {
 			public void onSuccess(List<Player> result) {
 				teamTable.clear();
 				for (Player p : result) {
-					teamTable.add(new Image("/serveBlob?key=" + p.getImageKey()));
+					final Long playerId = p.getId();
+					Image image = new Image("/serveBlob?key=" + p.getImageKey());
+					image.addClickHandler(new ClickHandler() {
+						
+						@Override
+						public void onClick(ClickEvent event) {
+							saveMatchPlayer(matchId, order, playerId);
+						}
+					});
+					teamTable.add(image);
 				}
 			}
 			
 			@Override
 			public void onFailure(Throwable caught) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	}
+	
+	private void saveMatchPlayer(long matchId, int order, long playerId) {
+		dataService.saveMatchPlayer(order, matchId, playerId, new AsyncCallback<Void>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onSuccess(Void result) {
 				// TODO Auto-generated method stub
 				
 			}

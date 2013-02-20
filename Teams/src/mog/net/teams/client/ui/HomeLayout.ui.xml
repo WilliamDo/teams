@@ -7,31 +7,31 @@
 		
 	</ui:style>
 
-	<g:SplitLayoutPanel>
+	<g:DockLayoutPanel>
+		<g:north size="100.0">
+			<g:HTMLPanel>
+				<g:MenuBar>
+					<g:MenuItem text="Players"/>
+					<g:MenuItem text="Matches"/>
+				</g:MenuBar>
+			</g:HTMLPanel>
+		</g:north>
 		<g:center>
 			<g:ScrollPanel ui:field="centerScrollPanel">
 				<g:Label>Body</g:Label>
 			</g:ScrollPanel>
 		</g:center>
-		<g:west size='300'>
-			<g:StackLayoutPanel unit='EM'>
-				<g:stack>
-					<g:header size='3'>Players</g:header>
-					<g:Label>Players go here</g:Label>
-				</g:stack>
-				<g:stack>
-					<g:header size='3'>Matches</g:header>
-					<g:Label>Matches go here</g:Label>
-				</g:stack>
-				<g:stack>
-					<g:header size='3'>Admin</g:header>
-					<g:Label>Super-user things go here</g:Label>
-				</g:stack>
-			</g:StackLayoutPanel>
+		<g:west size='200'>
+			<g:HTMLPanel>
+				<p>Players</p>
+				<p>Matches</p>
+				<p>Leagues</p>
+			</g:HTMLPanel>
+
 		</g:west>
 
-		<g:south size="106">
+		<g:south size="100">
 			<g:SimplePanel ui:field="southPanel"></g:SimplePanel>
 		</g:south>
-	</g:SplitLayoutPanel>
+	</g:DockLayoutPanel>
 </ui:UiBinder> 

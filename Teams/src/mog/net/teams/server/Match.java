@@ -38,15 +38,15 @@ public class Match implements Serializable {
 	}
 	
 	public Player getPlayer1() {
-		return player1.get();
+		return player1 != null ? player1.get() : null;
 	}
 	
 	public Player getPlayer2() {
-		return player2.get();
+		return player2 != null ? player2.get() : null;
 	}
 	
 	public Player getPlayer3() {
-		return player3.get();
+		return player3 != null ? player3.get() : null;
 	}
 	
 	public void setPlayer1(Player player) {
