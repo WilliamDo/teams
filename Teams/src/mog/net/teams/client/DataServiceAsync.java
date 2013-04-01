@@ -19,5 +19,9 @@ public interface DataServiceAsync {
 	void saveMatchPlayer(int order, long matchId, long playerId, AsyncCallback<Void> callback);
 	
 	void getPlayer(long playerId, AsyncCallback<Player> callback);
+	
+	void savePlayer(Player p, AsyncCallback<Void> callback);
+	
+	void deletePlayer(long playerId, AsyncCallback<Void> callback);
 
 }

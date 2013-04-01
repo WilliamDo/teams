@@ -5,6 +5,8 @@ import java.util.List;
 import mog.net.teams.client.DataService;
 import mog.net.teams.client.DataServiceAsync;
 import mog.net.teams.client.Player;
+import mog.net.teams.client.event.SavePlayerCompleteEvent;
+import mog.net.teams.client.event.SavePlayerCompleteEventHandler;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
@@ -36,6 +38,15 @@ public class PlayerLayout extends Composite {
 		drawPlayers();
 		newPlayerPanel.add(new NewPlayer(eventBus));
 		this.eventBus = eventBus;
+		
+		eventBus.addHandler(SavePlayerCompleteEvent.TYPE, new SavePlayerCompleteEventHandler() {
+			
+			@Override
+			public void onSavePlayerComplete() {
+				drawPlayers();
+				
+			}
+		});
 	}
 	
 	public void drawPlayers() {

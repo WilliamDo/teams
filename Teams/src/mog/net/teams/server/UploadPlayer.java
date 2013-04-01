@@ -1,7 +1,5 @@
 package mog.net.teams.server;
 
-import static mog.net.teams.server.OfyService.ofy;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -10,8 +8,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import mog.net.teams.client.Player;
 
 import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.blobstore.BlobstoreService;
@@ -29,19 +25,14 @@ public class UploadPlayer extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		System.out.println("I tried to upload something");
-		Map<String, List<BlobKey>> uploads = blobstoreService.getUploads(req);
+		// Save the image to the blobstore
 		
-		String firstName = req.getParameter("firstName");
-		String lastName = req.getParameter("surname");
-		String emailAddress = req.getParameter("emailAddress");
+		System.out.println("I tried to upload something");
+		Map<String, List<BlobKey>> uploads = blobstoreService.getUploads(req);		
 		BlobKey blobKey = uploads.values().iterator().next().get(0);
 		
-		Player player = new Player(firstName, lastName, emailAddress, blobKey.getKeyString());
-		ofy().save().entity(player);
-		
 		resp.setContentType("text/html");
-		resp.getWriter().println(blobKey.getKeyString());
+		resp.getWriter().print(blobKey.getKeyString());
 		
 	}
 	

@@ -21,5 +21,9 @@ public interface DataService extends RemoteService {
 	public void saveMatch(MatchWrapper newMatch);
 	
 	public void saveMatchPlayer(int order, long matchId, long playerId);
+	
+	public void savePlayer(Player p);
+	
+	public void deletePlayer(long playerId);
 
 }

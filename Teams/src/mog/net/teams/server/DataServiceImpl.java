@@ -16,6 +16,7 @@ import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 import com.google.appengine.api.images.ImagesService;
 import com.google.appengine.api.images.ImagesServiceFactory;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import com.googlecode.objectify.Ref;
 
 public class DataServiceImpl extends RemoteServiceServlet implements DataService {
 
@@ -95,6 +96,19 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 	@Override
 	public Player getPlayer(long playerId) {
 		return ofy().load().type(Player.class).id(playerId).get();
+	}
+
+	@Override
+	public void savePlayer(Player p) {
+		ofy().save().entity(p).now();
+		
+	}
+
+	@Override
+	public void deletePlayer(long playerId) {
+		Ref<Player> player = ofy().load().type(Player.class).id(playerId);
+		blobstoreService.delete(new BlobKey(player.get().getImageKey()));
+		ofy().delete().entity(player.get()).now();
 	}
 
 }
