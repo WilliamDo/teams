@@ -2,6 +2,9 @@ package mog.net.teams.client.ui;
 
 import mog.net.teams.client.DataService;
 import mog.net.teams.client.DataServiceAsync;
+import mog.net.teams.client.Player;
+import mog.net.teams.client.event.LoadPlayerEvent;
+import mog.net.teams.client.event.LoadPlayerEventHandler;
 import mog.net.teams.client.event.SavePlayerCompleteEvent;
 
 import com.google.gwt.core.client.GWT;
@@ -46,6 +49,15 @@ public class NewPlayer extends Composite {
 			}
 		});
 		
+		eventBus.addHandler(LoadPlayerEvent.TYPE, new LoadPlayerEventHandler() {
+			@Override
+			public void onLoadPlayer(LoadPlayerEvent event) {
+				loadPlayer(event.getId());
+				
+			}
+			
+		});
+		
 	}
 
 	@UiField
@@ -85,7 +97,27 @@ public class NewPlayer extends Composite {
 			}
 		});
 		
-		
+	}
+	
+	private void loadPlayer(long id) {
+
+		dataService.getPlayer(id, new AsyncCallback<Player>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onSuccess(Player result) {
+				form.reset();
+				firstNameTextBox.setText(result.getFirstName());
+				surnameTextBox.setText(result.getLastName());
+				emailTextBox.setText(result.getEmailAddress());
+			}
+			
+		});
 		
 	}
 

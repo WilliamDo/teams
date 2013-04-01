@@ -5,6 +5,7 @@
 		.important {
 			font-weight: bold;
 		}
+
 	</ui:style>
 	<g:DecoratorPanel>
 		<g:FormPanel ui:field="form">

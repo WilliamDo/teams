@@ -23,6 +23,7 @@ public class Player implements Serializable {
 	private String lastName;
 	private String emailAddress;
 	private String imageKey;
+	private String imageServingUrl;
 	
 	public Player() {
 		// No-arg constructor
@@ -67,6 +68,14 @@ public class Player implements Serializable {
 
 	public void setImageKey(String imageKey) {
 		this.imageKey = imageKey;
+	}
+
+	public String getImageServingUrl() {
+		return imageServingUrl;
+	}
+
+	public void setImageServingUrl(String imageServingUrl) {
+		this.imageServingUrl = imageServingUrl;
 	}
 
 }

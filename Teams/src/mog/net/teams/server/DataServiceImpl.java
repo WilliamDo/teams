@@ -1,6 +1,7 @@
 package mog.net.teams.server;
 
 import static mog.net.teams.server.OfyService.ofy;
+import static com.google.appengine.api.images.ServingUrlOptions.Builder.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +10,11 @@ import mog.net.teams.client.DataService;
 import mog.net.teams.client.Player;
 import mog.net.teams.shared.MatchWrapper;
 
+import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.blobstore.BlobstoreService;
 import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
+import com.google.appengine.api.images.ImagesService;
+import com.google.appengine.api.images.ImagesServiceFactory;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 public class DataServiceImpl extends RemoteServiceServlet implements DataService {
@@ -30,7 +34,17 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 
 	@Override
 	public List<Player> getPlayers() {
-		return new ArrayList<Player>(ofy().load().type(Player.class).list());
+		ArrayList<Player> players = new ArrayList<Player>(ofy().load().type(Player.class).list());
+		
+		ImagesService imagesService = ImagesServiceFactory.getImagesService();
+		
+		for (Player p : players) {
+			String servingUrl = imagesService.getServingUrl(withBlobKey(new BlobKey(p.getImageKey())));
+			p.setImageServingUrl(servingUrl);
+		}
+		
+		
+		return players;
 	}
 
 	@Override
@@ -76,6 +90,11 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 		
 		ofy().save().entity(m);
 		
+	}
+
+	@Override
+	public Player getPlayer(long playerId) {
+		return ofy().load().type(Player.class).id(playerId).get();
 	}
 
 }

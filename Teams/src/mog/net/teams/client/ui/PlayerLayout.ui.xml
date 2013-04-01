@@ -1,0 +1,35 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:h="urn:import:mog.net.teams.client.ui">
+	<ui:style>
+		.newPlayerColumn {
+			background-color: grey;
+			padding-left: 10px;
+
+		}
+		
+	</ui:style>
+	
+	<g:DockLayoutPanel>
+	
+		<g:center>
+			<g:HTMLPanel>
+				<h2>Team Management</h2>
+				<g:FlowPanel ui:field="playersFlowPanel"></g:FlowPanel>	
+			</g:HTMLPanel>
+		</g:center>
+		
+		<g:east size="400">
+			<g:HTMLPanel styleName="{style.newPlayerColumn}">
+				<h2>New Player</h2>
+				<g:SimplePanel ui:field="newPlayerPanel"></g:SimplePanel>
+			</g:HTMLPanel>
+		</g:east>
+	
+	</g:DockLayoutPanel>
+
+		
+		
+
+</ui:UiBinder> 

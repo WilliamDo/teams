@@ -4,6 +4,7 @@ import mog.net.teams.client.ui.HomeLayout;
 import mog.net.teams.client.ui.MatchListView;
 import mog.net.teams.client.ui.NewMatch;
 import mog.net.teams.client.ui.NewPlayer;
+import mog.net.teams.client.ui.PlayerLayout;
 import mog.net.teams.client.ui.TeamLineup;
 
 import com.google.gwt.core.client.EntryPoint;
@@ -29,7 +30,8 @@ public class Teams implements EntryPoint {
 		HomeLayout homeLayout = new HomeLayout(eventBus, teamWidget, vPanel);
 		
 		
-		RootLayoutPanel.get().add(homeLayout);
+		RootLayoutPanel.get().add(new PlayerLayout(eventBus));
+		
 	}
 
 }

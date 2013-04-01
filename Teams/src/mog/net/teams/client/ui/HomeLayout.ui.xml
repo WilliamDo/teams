@@ -1,7 +1,7 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui"
-	xmlns:h="urn:import:mog.net.teams.client">
+	xmlns:h="urn:import:mog.net.teams.client" xmlns:p1="urn:import:com.google.gwt.user.cellview.client" xmlns:w="urn:import:com.google.gwt.widget.client">
 
 	<ui:style>
 		
@@ -11,7 +11,12 @@
 		<g:north size="100.0">
 			<g:HTMLPanel>
 				<g:MenuBar>
-					<g:MenuItem text="Players"/>
+					<g:MenuItem text="Players">
+						<g:MenuBar vertical="true">
+							<g:MenuItem text="New"/>
+							<g:MenuItem text="View"/>
+						</g:MenuBar>
+					</g:MenuItem>
 					<g:MenuItem text="Matches"/>
 				</g:MenuBar>
 			</g:HTMLPanel>
@@ -22,12 +27,7 @@
 			</g:ScrollPanel>
 		</g:center>
 		<g:west size='200'>
-			<g:HTMLPanel>
-				<p>Players</p>
-				<p>Matches</p>
-				<p>Leagues</p>
-			</g:HTMLPanel>
-
+			<g:HTMLPanel ui:field="leftNavBar"></g:HTMLPanel>
 		</g:west>
 
 		<g:south size="100">
