@@ -47,7 +47,7 @@ h1 {
 
 .editPlayerColumn {
 	border-left: 1px solid gray;
-	padding-left: 10px;
+	padding: 0px 30px 0px 30px;
 	background-image: url("redox_02.png");
 	background-repeat:repeat;
 }

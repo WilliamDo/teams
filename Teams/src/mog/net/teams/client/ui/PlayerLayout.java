@@ -51,7 +51,7 @@ public class PlayerLayout extends Composite {
 			@Override
 			public void onSavePlayerComplete() {
 				drawPlayers();
-				
+				rootLayout.setWidgetHidden(newPlayerPanel, true);
 			}
 		});
 		
@@ -66,10 +66,14 @@ public class PlayerLayout extends Composite {
 						entry.getValue().unselectPlayer();
 					}
 				}
+				rootLayout.setWidgetHidden(newPlayerPanel, false);
+				
 				
 			}
 		
 		});
+		
+		rootLayout.setWidgetHidden(newPlayerPanel, true);
 		
 		
 	}
