@@ -30,11 +30,8 @@
 			</g:HTMLPanel>
 		</g:center>
 		
-		<g:east size="400">
-			<g:HTMLPanel styleName="editPlayerColumn">
-				Player Details
-				<g:SimplePanel ui:field="newPlayerPanel"></g:SimplePanel>
-			</g:HTMLPanel>
+		<g:east size="300">
+			<g:SimplePanel ui:field="newPlayerPanel" styleName="editPlayerColumn"></g:SimplePanel>
 		</g:east>
 	
 	</g:DockLayoutPanel>

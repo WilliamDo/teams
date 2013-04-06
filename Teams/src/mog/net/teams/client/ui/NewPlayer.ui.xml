@@ -2,59 +2,64 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style>
+		.label {
+			padding-top: 10px;
+			font-size: smaller;
+		}
+		
+		.dataEntry {
+		}
+		
+		.dataEntry input {
+			box-sizing: border-box;
+			width: 100%;
+
+		}
+			
+		.title {
+			padding: 10px 10px 10px 10px;
+			font-weight: bold;
+
+		}
+		
+		.imageCell {
+			text-align: center;
+
+		}
 
 	</ui:style>
-	<g:VerticalPanel>
-	
-	<g:Image ui:field="playerImage"></g:Image>
-	
-	<g:DecoratorPanel>
-		<g:FormPanel ui:field="form">
-			<g:HTMLPanel>
-				<table>
-					<tr>
-						<td>First name</td>
-						<td>
-							<g:TextBox ui:field="firstNameTextBox" name="firstName" />
-						</td>
-					</tr>
+	<g:FormPanel ui:field="form">
+		<g:HTMLPanel>
+			
+			<div class="{style.imageCell}">
+				<g:Label ui:field="playerNameLabel" styleName="{style.title}"></g:Label>
+				<g:Image ui:field="playerImage"></g:Image>
+			</div>
+			
+			<div class="{style.label}">First name</div>
+			<div class="{style.dataEntry}">
+				<g:TextBox ui:field="firstNameTextBox" name="firstName" />
+			</div>
 
-					<tr>
-						<td>Surname</td>
-						<td>
-							<g:TextBox ui:field="surnameTextBox" name="surname" />
-						</td>
-					</tr>
+			<div class="{style.label}">Surname</div>
+			<div class="{style.dataEntry}">
+				<g:TextBox ui:field="surnameTextBox" name="surname" />
+			</div>
 
-					<tr>
-						<td>Email</td>
-						<td>
-							<g:TextBox ui:field="emailTextBox" name="emailAddress" />
-						</td>
-					</tr>
+			<div class="{style.label}">Email</div>
+			<div class="{style.dataEntry}">
+				<g:TextBox ui:field="emailTextBox" name="emailAddress" />
+			</div>
 
-					<tr>
-						<td>Photo</td>
-						<td>
-							<g:FileUpload ui:field="imageUpload" name="imageUpload" />
-						</td>
-					</tr>
-
-					<tr>
-						<td colspan="2">
-							
-						</td>
-					</tr>
-				</table>
-			</g:HTMLPanel>
-		</g:FormPanel>
-	</g:DecoratorPanel>
+			<div class="{style.label}">Photo</div>
+			<div class="{style.dataEntry}">
+				<g:FileUpload ui:field="imageUpload" name="imageUpload" />
+			</div>
 	
-	<g:HTMLPanel>
-		<g:Button ui:field="submitButton">Save</g:Button>
-		<g:Button ui:field="newPlayerButton">New Player</g:Button>
-		<g:Button ui:field="deletePlayerButton">Delete</g:Button>
-	</g:HTMLPanel>
-	
-	</g:VerticalPanel>
+		
+			<g:Button ui:field="submitButton">Save</g:Button>
+			<g:Button ui:field="newPlayerButton">New Player</g:Button>
+			<g:Button ui:field="deletePlayerButton">Delete</g:Button>
+		</g:HTMLPanel>
+	</g:FormPanel>
 </ui:UiBinder> 

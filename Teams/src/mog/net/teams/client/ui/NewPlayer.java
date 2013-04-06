@@ -24,6 +24,7 @@ import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.FormPanel.SubmitCompleteEvent;
 import com.google.gwt.user.client.ui.FormPanel.SubmitCompleteHandler;
 import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -37,6 +38,9 @@ public class NewPlayer extends Composite {
 	interface NewPlayerUiBinder extends UiBinder<Widget, NewPlayer> {
 	}
 
+	@UiField
+	Label playerNameLabel;
+	
 	@UiField
 	Image playerImage;
 	
@@ -184,6 +188,7 @@ public class NewPlayer extends Composite {
 			@Override
 			public void onSuccess(Player result) {
 				form.reset();
+				playerNameLabel.setText(result.getFirstName());
 				firstNameTextBox.setText(result.getFirstName());
 				surnameTextBox.setText(result.getLastName());
 				emailTextBox.setText(result.getEmailAddress());
