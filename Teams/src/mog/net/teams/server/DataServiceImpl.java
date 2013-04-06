@@ -26,6 +26,7 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 	private static final long serialVersionUID = 843808661668159681L;
 
 	private BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+	private ImagesService imagesService = ImagesServiceFactory.getImagesService();
 	
 	@Override
 	public String getBlobstoreServiceAction() {
@@ -36,8 +37,6 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 	@Override
 	public List<Player> getPlayers() {
 		ArrayList<Player> players = new ArrayList<Player>(ofy().load().type(Player.class).list());
-		
-		ImagesService imagesService = ImagesServiceFactory.getImagesService();
 		
 		for (Player p : players) {
 			String servingUrl = imagesService.getServingUrl(withBlobKey(new BlobKey(p.getImageKey())));
@@ -95,7 +94,10 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 
 	@Override
 	public Player getPlayer(long playerId) {
-		return ofy().load().type(Player.class).id(playerId).get();
+		Player player = ofy().load().type(Player.class).id(playerId).get();
+		String servingUrl = imagesService.getServingUrl(withBlobKey(new BlobKey(player.getImageKey())));
+		player.setImageServingUrl(servingUrl);
+		return player;
 	}
 
 	@Override

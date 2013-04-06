@@ -33,13 +33,30 @@ h1 {
   margin: 15px 6px 6px;
 }
 
+.centerTitle {
+	color: white;
+	font-weight: bold;
+	background-color: rgb(87, 32, 32);
+	padding: 10px 10px 10px 10px;
+	border-bottom: 1px solid black;
+}
+
 .selectedPlayer {
 	background-color: gray;
 }
 
 .editPlayerColumn {
+	border-left: 1px solid gray;
 	padding-left: 10px;
-	background-color: gray;
+	background-image: url("redox_02.png");
+	background-repeat:repeat;
+}
+
+.playerList {
+	background-image: url("retina_wood.png");
+	background-repeat: repeat;
+	height: 100%;
+	overflow-y: auto;
 }
 
 

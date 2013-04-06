@@ -1,6 +1,5 @@
 package mog.net.teams.client.ui;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +18,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -35,6 +35,7 @@ public class PlayerLayout extends Composite {
 	
 	@UiField FlowPanel playersFlowPanel;
 	@UiField SimplePanel newPlayerPanel;
+	@UiField DockLayoutPanel rootLayout;
 	
 	private EventBus eventBus;
 	private Map<Player, PlayerWidget> players;
@@ -69,6 +70,7 @@ public class PlayerLayout extends Composite {
 			}
 		
 		});
+		
 		
 	}
 	

@@ -23,6 +23,7 @@ import com.google.gwt.user.client.ui.FileUpload;
 import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.FormPanel.SubmitCompleteEvent;
 import com.google.gwt.user.client.ui.FormPanel.SubmitCompleteHandler;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -36,6 +37,9 @@ public class NewPlayer extends Composite {
 	interface NewPlayerUiBinder extends UiBinder<Widget, NewPlayer> {
 	}
 
+	@UiField
+	Image playerImage;
+	
 	@UiField
 	Button submitButton;
 
@@ -183,6 +187,7 @@ public class NewPlayer extends Composite {
 				firstNameTextBox.setText(result.getFirstName());
 				surnameTextBox.setText(result.getLastName());
 				emailTextBox.setText(result.getEmailAddress());
+				playerImage.setUrl(result.getImageServingUrl());
 				player = result;
 			}
 			

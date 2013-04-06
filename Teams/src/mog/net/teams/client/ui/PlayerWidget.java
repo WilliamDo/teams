@@ -29,7 +29,7 @@ public class PlayerWidget extends Composite {
 
 	public PlayerWidget(final Player player, final EventBus eventBus) {
 		initWidget(uiBinder.createAndBindUi(this));
-		image.setUrl(player.getImageServingUrl() + "=s100");
+		image.setUrl(player.getImageServingUrl() + "=s160");
 		name.setText(player.getFirstName());
 		
 		image.addClickHandler(new ClickHandler() {
