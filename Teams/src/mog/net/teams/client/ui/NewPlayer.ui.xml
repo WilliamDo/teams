@@ -4,6 +4,7 @@
 	<ui:style>
 
 	</ui:style>
+	<g:VerticalPanel>
 	<g:DecoratorPanel>
 		<g:FormPanel ui:field="form">
 			<g:HTMLPanel>
@@ -38,13 +39,19 @@
 
 					<tr>
 						<td colspan="2">
-							<g:Button ui:field="submitButton">Save</g:Button>
-							<g:Button ui:field="newPlayerButton">New Player</g:Button>
-							<g:Button ui:field="deletePlayerButton">Delete</g:Button>
+							
 						</td>
 					</tr>
 				</table>
 			</g:HTMLPanel>
 		</g:FormPanel>
 	</g:DecoratorPanel>
+	
+	<g:HTMLPanel>
+		<g:Button ui:field="submitButton">Save</g:Button>
+		<g:Button ui:field="newPlayerButton">New Player</g:Button>
+		<g:Button ui:field="deletePlayerButton">Delete</g:Button>
+	</g:HTMLPanel>
+	
+	</g:VerticalPanel>
 </ui:UiBinder> 

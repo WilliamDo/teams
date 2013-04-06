@@ -32,3 +32,22 @@ h1 {
 #closeButton {
   margin: 15px 6px 6px;
 }
+
+.selectedPlayer {
+	background-color: gray;
+}
+
+.editPlayerColumn {
+	padding-left: 10px;
+	background-color: gray;
+}
+
+
+.gwt-DecoratorPanel .topCenter
+, .gwt-DecoratorPanel .bottomCenter
+, .gwt-DecoratorPanel .middleLeft
+, .gwt-DecoratorPanel .middleRight
+, .gwt-DecoratorPanel .middleCenter {
+	background-color: white;
+}
+

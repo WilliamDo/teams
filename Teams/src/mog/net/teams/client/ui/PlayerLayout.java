@@ -1,10 +1,15 @@
 package mog.net.teams.client.ui;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import mog.net.teams.client.DataService;
 import mog.net.teams.client.DataServiceAsync;
 import mog.net.teams.client.Player;
+import mog.net.teams.client.event.LoadPlayerEvent;
+import mog.net.teams.client.event.LoadPlayerEventHandler;
 import mog.net.teams.client.event.SavePlayerCompleteEvent;
 import mog.net.teams.client.event.SavePlayerCompleteEventHandler;
 
@@ -32,21 +37,39 @@ public class PlayerLayout extends Composite {
 	@UiField SimplePanel newPlayerPanel;
 	
 	private EventBus eventBus;
+	private Map<Player, PlayerWidget> players;
 
 	public PlayerLayout(EventBus eventBus) {
 		initWidget(uiBinder.createAndBindUi(this));
 		drawPlayers();
 		newPlayerPanel.add(new NewPlayer(eventBus));
 		this.eventBus = eventBus;
+		this.players = new HashMap<Player, PlayerWidget>();
 		
 		eventBus.addHandler(SavePlayerCompleteEvent.TYPE, new SavePlayerCompleteEventHandler() {
-			
 			@Override
 			public void onSavePlayerComplete() {
 				drawPlayers();
 				
 			}
 		});
+		
+		eventBus.addHandler(LoadPlayerEvent.TYPE, new LoadPlayerEventHandler() {
+
+			@Override
+			public void onLoadPlayer(LoadPlayerEvent event) {
+				for (Map.Entry<Player, PlayerWidget> entry : players.entrySet()) {
+					if (entry.getKey().getId().equals(event.getId())) {
+						entry.getValue().selectPlayer();
+					} else {
+						entry.getValue().unselectPlayer();
+					}
+				}
+				
+			}
+		
+		});
+		
 	}
 	
 	public void drawPlayers() {
@@ -58,7 +81,9 @@ public class PlayerLayout extends Composite {
 				playersFlowPanel.clear();
 				
 				for (Player p : result) {
-					playersFlowPanel.add(new PlayerWidget(p, eventBus));
+					PlayerWidget playerWidget = new PlayerWidget(p, eventBus);
+					players.put(p, playerWidget);
+					playersFlowPanel.add(playerWidget);
 				}
 				
 			}
@@ -71,5 +96,6 @@ public class PlayerLayout extends Composite {
 		});
 		
 	}
+	
 
 }

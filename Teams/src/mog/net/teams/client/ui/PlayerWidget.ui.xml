@@ -6,11 +6,12 @@
 			float: left;
 			margin-left: 20px;
 			margin-bottom: 20px;
+			padding: 3px 3px 3px 3px;
 		}
 		
 	</ui:style>
 
-	<g:VerticalPanel styleName="{style.playerWidget}" horizontalAlignment="ALIGN_CENTER">
+	<g:VerticalPanel ui:field="container" ui:styleName="{style.playerWidget}" horizontalAlignment="ALIGN_CENTER">
 		<g:Image ui:field="image"></g:Image>
 		<g:Label ui:field="name"></g:Label>
 	</g:VerticalPanel>

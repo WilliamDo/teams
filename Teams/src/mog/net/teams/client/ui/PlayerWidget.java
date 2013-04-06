@@ -12,6 +12,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class PlayerWidget extends Composite {
@@ -24,6 +25,7 @@ public class PlayerWidget extends Composite {
 	
 	@UiField Image image;
 	@UiField Label name;
+	@UiField VerticalPanel container;
 
 	public PlayerWidget(final Player player, final EventBus eventBus) {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -34,11 +36,19 @@ public class PlayerWidget extends Composite {
 			
 			@Override
 			public void onClick(ClickEvent event) {
-				// TODO Auto-generated method stub
+				selectPlayer();
 				eventBus.fireEvent(new LoadPlayerEvent(player.getId()));
 			}
 			
 		});
+	}
+	
+	public void selectPlayer() {
+		container.addStyleName("selectedPlayer");
+	}
+	
+	public void unselectPlayer() {
+		container.removeStyleName("selectedPlayer");
 	}
 
 }

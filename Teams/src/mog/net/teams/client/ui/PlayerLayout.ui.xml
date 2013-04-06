@@ -3,11 +3,6 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui"
 	xmlns:h="urn:import:mog.net.teams.client.ui">
 	<ui:style>
-		.newPlayerColumn {
-			background-color: grey;
-			padding-left: 10px;
-
-		}
 		
 	</ui:style>
 	
@@ -21,7 +16,7 @@
 		</g:center>
 		
 		<g:east size="400">
-			<g:HTMLPanel styleName="{style.newPlayerColumn}">
+			<g:HTMLPanel styleName="editPlayerColumn">
 				<h2>New Player</h2>
 				<g:SimplePanel ui:field="newPlayerPanel"></g:SimplePanel>
 			</g:HTMLPanel>
