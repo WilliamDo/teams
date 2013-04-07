@@ -25,5 +25,7 @@ public interface DataService extends RemoteService {
 	public void savePlayer(Player p);
 	
 	public void deletePlayer(long playerId);
+	
+	public String getImageServingUrl(String blobKey);
 
 }

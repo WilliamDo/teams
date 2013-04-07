@@ -42,7 +42,7 @@ h1 {
 }
 
 .selectedPlayer {
-	background-color: gray;
+	border: 3px solid blue;
 }
 
 .editPlayerColumn {

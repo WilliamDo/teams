@@ -113,4 +113,9 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 		ofy().delete().entity(player.get()).now();
 	}
 
+	@Override
+	public String getImageServingUrl(String blobKey) {
+		return imagesService.getServingUrl(withBlobKey(new BlobKey(blobKey)));
+	}
+
 }

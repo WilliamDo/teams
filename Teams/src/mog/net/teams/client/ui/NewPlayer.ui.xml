@@ -26,6 +26,11 @@
 			text-align: center;
 
 		}
+		
+		.buttonContainer {
+			margin-top: 20px;
+
+		}
 
 	</ui:style>
 	<g:FormPanel ui:field="form">
@@ -56,10 +61,11 @@
 				<g:FileUpload ui:field="imageUpload" name="imageUpload" />
 			</div>
 	
-		
-			<g:Button ui:field="submitButton">Save</g:Button>
-			<g:Button ui:field="cancelButton">Cancel</g:Button>
-			<g:Button ui:field="deletePlayerButton">Delete</g:Button>
+			<div class="{style.buttonContainer}">
+				<g:Button ui:field="submitButton">Save</g:Button>
+				<g:Button ui:field="cancelButton">Cancel</g:Button>
+				<g:Button ui:field="deletePlayerButton">Delete</g:Button>
+			</div>
 		</g:HTMLPanel>
 	</g:FormPanel>
 </ui:UiBinder> 

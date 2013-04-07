@@ -82,7 +82,7 @@ public class NewPlayer extends Composite {
 			@Override
 			public void onSubmitComplete(SubmitCompleteEvent event) {
 				imageKey = event.getResults();
-				Window.alert(imageKey);
+				displayImage(imageKey);
 				submitButton.setEnabled(true);
 			}
 		});
@@ -145,6 +145,7 @@ public class NewPlayer extends Composite {
 			player.setFirstName(firstNameTextBox.getText());
 			player.setLastName(surnameTextBox.getText());
 			player.setEmailAddress(emailTextBox.getText());
+			player.setImageKey(imageKey);
 		}
 		
 		dataService.savePlayer(player, new AsyncCallback<Void>() {
@@ -212,12 +213,30 @@ public class NewPlayer extends Composite {
 				firstNameTextBox.setText(result.getFirstName());
 				surnameTextBox.setText(result.getLastName());
 				emailTextBox.setText(result.getEmailAddress());
+				imageKey = result.getImageKey();
 				playerImage.setUrl(result.getImageServingUrl());
 				player = result;
 			}
 			
 		});
 		
+	}
+	
+	private void displayImage(String blobKey) {
+		dataService.getImageServingUrl(blobKey, new AsyncCallback<String>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onSuccess(String result) {
+				playerImage.setUrl(result);
+				
+			}
+		});
 	}
 
 
