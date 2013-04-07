@@ -36,6 +36,8 @@ public class NewPlayer extends Composite {
 	private static NewPlayerUiBinder uiBinder = GWT
 			.create(NewPlayerUiBinder.class);
 	
+	private static final int MAX_WIDTH = 240;
+	
 	private static DataServiceAsync dataService = GWT.create(DataService.class);
 
 	interface NewPlayerUiBinder extends UiBinder<Widget, NewPlayer> {
@@ -214,7 +216,7 @@ public class NewPlayer extends Composite {
 				surnameTextBox.setText(result.getLastName());
 				emailTextBox.setText(result.getEmailAddress());
 				imageKey = result.getImageKey();
-				playerImage.setUrl(result.getImageServingUrl());
+				displayImage(result.getImageKey());
 				player = result;
 			}
 			
@@ -223,7 +225,7 @@ public class NewPlayer extends Composite {
 	}
 	
 	private void displayImage(String blobKey) {
-		dataService.getImageServingUrl(blobKey, new AsyncCallback<String>() {
+		dataService.getImageServingUrl(blobKey, MAX_WIDTH, new AsyncCallback<String>() {
 
 			@Override
 			public void onFailure(Throwable caught) {

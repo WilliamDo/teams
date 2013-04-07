@@ -13,6 +13,7 @@ import mog.net.teams.shared.MatchWrapper;
 import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.blobstore.BlobstoreService;
 import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
+import com.google.appengine.api.images.Image;
 import com.google.appengine.api.images.ImagesService;
 import com.google.appengine.api.images.ImagesServiceFactory;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -114,8 +115,16 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 	}
 
 	@Override
-	public String getImageServingUrl(String blobKey) {
-		return imagesService.getServingUrl(withBlobKey(new BlobKey(blobKey)));
+	public String getImageServingUrl(String blobKey, int maxWidth) {
+		
+		Image image = ImagesServiceFactory.makeImageFromBlob(new BlobKey(blobKey));
+		imagesService.applyTransform(ImagesServiceFactory.makeRotate(0), image);
+
+		if (image.getWidth() > maxWidth) {
+			return imagesService.getServingUrl(withBlobKey(new BlobKey(blobKey)).imageSize(maxWidth));
+		} else {
+			return imagesService.getServingUrl(withBlobKey(new BlobKey(blobKey)));
+		}
 	}
 
 }

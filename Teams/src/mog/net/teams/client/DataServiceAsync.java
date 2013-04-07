@@ -24,6 +24,6 @@ public interface DataServiceAsync {
 	
 	void deletePlayer(long playerId, AsyncCallback<Void> callback);
 	
-	void getImageServingUrl(String blobKey, AsyncCallback<String> callback);
+	void getImageServingUrl(String blobKey, int maxWidth, AsyncCallback<String> callback);
 
 }
