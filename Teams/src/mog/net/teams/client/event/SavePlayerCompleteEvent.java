@@ -6,6 +6,24 @@ public class SavePlayerCompleteEvent extends GwtEvent<SavePlayerCompleteEventHan
 
 	public static Type<SavePlayerCompleteEventHandler> TYPE = new Type<SavePlayerCompleteEventHandler>();
 	
+	public enum Action {
+		MODIFIED, UNCHANGED
+	}
+	
+	private final Action action;
+	
+	public SavePlayerCompleteEvent(Action action) {
+		this.action = action;
+	}
+	
+	public static Type<SavePlayerCompleteEventHandler> getTYPE() {
+		return TYPE;
+	}
+
+	public Action getAction() {
+		return action;
+	}
+
 	@Override
 	public Type<SavePlayerCompleteEventHandler> getAssociatedType() {
 		return TYPE;
@@ -13,7 +31,7 @@ public class SavePlayerCompleteEvent extends GwtEvent<SavePlayerCompleteEventHan
 
 	@Override
 	protected void dispatch(SavePlayerCompleteEventHandler handler) {
-		handler.onSavePlayerComplete();
+		handler.onSavePlayerComplete(action);
 	}
 
 }

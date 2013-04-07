@@ -6,6 +6,7 @@ import mog.net.teams.client.DataService;
 import mog.net.teams.client.DataServiceAsync;
 import mog.net.teams.client.Player;
 import mog.net.teams.client.event.SavePlayerCompleteEvent;
+import mog.net.teams.client.event.SavePlayerCompleteEvent.Action;
 import mog.net.teams.client.event.SavePlayerCompleteEventHandler;
 
 import com.google.gwt.core.client.GWT;
@@ -44,7 +45,7 @@ public class TeamLineup extends Composite {
 		
 		eventBus.addHandler(SavePlayerCompleteEvent.TYPE, new SavePlayerCompleteEventHandler() {
 			@Override
-			public void onSavePlayerComplete() {
+			public void onSavePlayerComplete(Action action) {
 				drawPlayers();
 			}
 		});

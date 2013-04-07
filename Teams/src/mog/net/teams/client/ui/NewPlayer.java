@@ -5,7 +5,10 @@ import mog.net.teams.client.DataServiceAsync;
 import mog.net.teams.client.Player;
 import mog.net.teams.client.event.LoadPlayerEvent;
 import mog.net.teams.client.event.LoadPlayerEventHandler;
+import mog.net.teams.client.event.NewPlayerEvent;
+import mog.net.teams.client.event.NewPlayerEventHandler;
 import mog.net.teams.client.event.SavePlayerCompleteEvent;
+import mog.net.teams.client.event.SavePlayerCompleteEvent.Action;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ChangeEvent;
@@ -62,6 +65,9 @@ public class NewPlayer extends Composite {
 	@UiField
 	FileUpload imageUpload;
 	
+	@UiField
+	Button deletePlayerButton;
+	
 	private final EventBus eventBus;
 	
 	private String imageKey;
@@ -88,6 +94,20 @@ public class NewPlayer extends Composite {
 				
 			}
 			
+		});
+		
+		eventBus.addHandler(NewPlayerEvent.TYPE, new NewPlayerEventHandler() {
+			
+			@Override
+			public void onNewPlayer() {
+				// TODO Auto-generated method stub
+				form.reset();
+				playerImage.setUrl("user.png");
+				player = null;
+				playerNameLabel.setText("New Player");
+				deletePlayerButton.setVisible(false);
+				
+			}
 		});
 		
 		imageUpload.addChangeHandler(new ChangeHandler() {
@@ -138,17 +158,11 @@ public class NewPlayer extends Composite {
 			@Override
 			public void onSuccess(Void result) {
 				Window.alert("Player saved!");
-				eventBus.fireEvent(new SavePlayerCompleteEvent());
+				eventBus.fireEvent(new SavePlayerCompleteEvent(Action.MODIFIED));
 				
 			}
 		});
 		
-	}
-	
-	@UiHandler("newPlayerButton")
-	void onNewPlayer(ClickEvent e) {
-		form.reset();
-		this.player = null;
 	}
 	
 	@UiHandler("deletePlayerButton")
@@ -165,7 +179,7 @@ public class NewPlayer extends Composite {
 				@Override
 				public void onSuccess(Void result) {
 					// Reusing the save event - consider renaming 
-					eventBus.fireEvent(new SavePlayerCompleteEvent());
+					eventBus.fireEvent(new SavePlayerCompleteEvent(Action.MODIFIED));
 					
 				}
 
@@ -173,6 +187,11 @@ public class NewPlayer extends Composite {
 				
 			});
 		}
+	}
+	
+	@UiHandler("cancelButton")
+	void onCancel(ClickEvent e) {
+		eventBus.fireEvent(new SavePlayerCompleteEvent(Action.UNCHANGED));
 	}
 	
 	private void loadPlayer(long id) {
@@ -188,6 +207,7 @@ public class NewPlayer extends Composite {
 			@Override
 			public void onSuccess(Player result) {
 				form.reset();
+				deletePlayerButton.setVisible(true);
 				playerNameLabel.setText(result.getFirstName());
 				firstNameTextBox.setText(result.getFirstName());
 				surnameTextBox.setText(result.getLastName());

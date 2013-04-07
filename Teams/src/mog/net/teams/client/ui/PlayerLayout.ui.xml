@@ -18,7 +18,9 @@
 					<table style="width: 100%;">
 						<tr>
 							<td>Team Management</td>
-							<td style="text-align: right;"><g:Button>New Player</g:Button></td>
+							<td style="text-align: right;">
+								<g:Button ui:field="newPlayerButton">New Player</g:Button>
+							</td>
 						</tr>
 					
 					</table>

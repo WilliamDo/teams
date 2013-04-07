@@ -9,13 +9,17 @@ import mog.net.teams.client.DataServiceAsync;
 import mog.net.teams.client.Player;
 import mog.net.teams.client.event.LoadPlayerEvent;
 import mog.net.teams.client.event.LoadPlayerEventHandler;
+import mog.net.teams.client.event.NewPlayerEvent;
 import mog.net.teams.client.event.SavePlayerCompleteEvent;
+import mog.net.teams.client.event.SavePlayerCompleteEvent.Action;
 import mog.net.teams.client.event.SavePlayerCompleteEventHandler;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
@@ -49,8 +53,10 @@ public class PlayerLayout extends Composite {
 		
 		eventBus.addHandler(SavePlayerCompleteEvent.TYPE, new SavePlayerCompleteEventHandler() {
 			@Override
-			public void onSavePlayerComplete() {
-				drawPlayers();
+			public void onSavePlayerComplete(Action action) {
+				if (action == Action.MODIFIED) {
+					drawPlayers();
+				}
 				rootLayout.setWidgetHidden(newPlayerPanel, true);
 			}
 		});
@@ -101,6 +107,12 @@ public class PlayerLayout extends Composite {
 			}
 		});
 		
+	}
+	
+	@UiHandler("newPlayerButton")
+	void onNewPlayerClick(ClickEvent e) {
+		this.eventBus.fireEvent(new NewPlayerEvent());
+		rootLayout.setWidgetHidden(newPlayerPanel, false);
 	}
 	
 
