@@ -4,5 +4,25 @@
 	<ui:style>
 		
 	</ui:style>
-	<g:VerticalPanel ui:field="matchesPanel"></g:VerticalPanel>
+	
+	<g:HTMLPanel>
+		<div class="centerTitle">
+			<table style="width: 100%;">
+				<tr>
+					<td>Fixtures</td>
+					<td style="text-align: right;">
+						<g:Button ui:field="viewPlayersButton">Matches</g:Button>
+						<g:Button ui:field="newMatchButton">New Match</g:Button>
+					</td>
+				</tr>
+			
+			</table>
+			
+		</div>
+		<div class="playerList">
+		<g:VerticalPanel ui:field="matchesPanel"></g:VerticalPanel>
+		</div>	
+	</g:HTMLPanel>
+	
+	
 </ui:UiBinder> 

@@ -7,6 +7,7 @@ import java.util.Map;
 import mog.net.teams.client.DataService;
 import mog.net.teams.client.DataServiceAsync;
 import mog.net.teams.client.Player;
+import mog.net.teams.client.event.ChangeViewEvent;
 import mog.net.teams.client.event.LoadPlayerEvent;
 import mog.net.teams.client.event.LoadPlayerEventHandler;
 import mog.net.teams.client.event.NewPlayerEvent;
@@ -113,6 +114,11 @@ public class PlayerLayout extends Composite {
 	void onNewPlayerClick(ClickEvent e) {
 		this.eventBus.fireEvent(new NewPlayerEvent());
 		rootLayout.setWidgetHidden(newPlayerPanel, false);
+	}
+	
+	@UiHandler("viewMatchesButton")
+	void onViewMatchesClick(ClickEvent e) {
+		this.eventBus.fireEvent(new ChangeViewEvent());
 	}
 	
 
