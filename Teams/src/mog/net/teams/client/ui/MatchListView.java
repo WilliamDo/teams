@@ -4,16 +4,21 @@ import java.util.List;
 
 import mog.net.teams.client.DataService;
 import mog.net.teams.client.DataServiceAsync;
+import mog.net.teams.client.event.ChangeViewEvent;
+import mog.net.teams.client.event.ChangeViewEvent.View;
 import mog.net.teams.client.event.SaveMatchCompleteEvent;
 import mog.net.teams.client.event.SaveMatchCompleteEventHandler;
 import mog.net.teams.shared.MatchWrapper;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -29,10 +34,18 @@ public class MatchListView extends Composite {
 	}
 	
 	@UiField VerticalPanel matchesPanel;
+	
+	@UiField SimplePanel newMatchPanel;
 
+	private final EventBus eventBus;
 
 	public MatchListView(EventBus eventBus) {
 		initWidget(uiBinder.createAndBindUi(this));
+		
+		this.eventBus = eventBus;
+		
+		newMatchPanel.add(new NewMatch(eventBus));
+		
 		drawMatches();
 		
 		eventBus.addHandler(SaveMatchCompleteEvent.TYPE, new SaveMatchCompleteEventHandler() {
@@ -66,6 +79,11 @@ public class MatchListView extends Composite {
 			}
 		});
 		
+	}
+	
+	@UiHandler("viewPlayersButton")
+	void onViewPlayers(ClickEvent e) {
+		this.eventBus.fireEvent(new ChangeViewEvent(View.PLAYERS));
 	}
 
 }

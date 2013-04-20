@@ -2,33 +2,42 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style>
+		.matchPlayer {
+			padding-left: 3px;
+
+		}
 		
+		.matchContainer {
+			border: 1px solid gray;
+			margin: 10px;
+			padding: 10px;
+			background-color: white;
+
+		}
 	</ui:style>
 	
-	<g:DecoratorPanel>
+	<g:HorizontalPanel styleName="{style.matchContainer}">
 	
-		<g:HorizontalPanel>
-			<g:HTMLPanel>
-				<h2><span ui:field="teamName"></span></h2>
-				<span ui:field="dateSpan"></span>
-			</g:HTMLPanel>
-			<g:VerticalPanel>
-				<g:Image ui:field="imagePlayer1"></g:Image>
-				<g:Button ui:field="choosePlayer1">Select</g:Button>
-			</g:VerticalPanel>
-			
-			<g:VerticalPanel>
-				<g:Image ui:field="imagePlayer2"></g:Image>
-				<g:Button ui:field="choosePlayer2">Select</g:Button>
-			</g:VerticalPanel>
-			
-			<g:VerticalPanel>
-				<g:Image ui:field="imagePlayer3"></g:Image>
-				<g:Button ui:field="choosePlayer3">Select</g:Button>
-			</g:VerticalPanel>
-			
-		</g:HorizontalPanel>
-	
-	</g:DecoratorPanel>
+		<g:HTMLPanel>
+			<span ui:field="teamName"></span>
+			<span ui:field="dateSpan"></span>
+		</g:HTMLPanel>
+		
+		<g:VerticalPanel styleName="{style.matchPlayer}">
+			<g:Image ui:field="imagePlayer1"></g:Image>
+			<g:Button ui:field="choosePlayer1">Select</g:Button>
+		</g:VerticalPanel>
+		
+		<g:VerticalPanel styleName="{style.matchPlayer}">
+			<g:Image ui:field="imagePlayer2"></g:Image>
+			<g:Button ui:field="choosePlayer2">Select</g:Button>
+		</g:VerticalPanel>
+		
+		<g:VerticalPanel styleName="{style.matchPlayer}">
+			<g:Image ui:field="imagePlayer3"></g:Image>
+			<g:Button ui:field="choosePlayer3">Select</g:Button>
+		</g:VerticalPanel>
+		
+	</g:HorizontalPanel>
 
 </ui:UiBinder> 

@@ -5,24 +5,33 @@
 		
 	</ui:style>
 	
-	<g:HTMLPanel>
-		<div class="centerTitle">
-			<table style="width: 100%;">
-				<tr>
-					<td>Fixtures</td>
-					<td style="text-align: right;">
-						<g:Button ui:field="viewPlayersButton">Matches</g:Button>
-						<g:Button ui:field="newMatchButton">New Match</g:Button>
-					</td>
-				</tr>
-			
-			</table>
-			
-		</div>
-		<div class="playerList">
-		<g:VerticalPanel ui:field="matchesPanel"></g:VerticalPanel>
-		</div>	
-	</g:HTMLPanel>
+	<g:DockLayoutPanel>
+		<g:center>
+			<g:HTMLPanel>
+				<div class="centerTitle">
+					<table style="width: 100%;">
+						<tr>
+							<td>Fixtures</td>
+							<td style="text-align: right;">
+								<g:Button ui:field="viewPlayersButton">Players</g:Button>
+								<g:Button ui:field="newMatchButton">New Match</g:Button>
+							</td>
+						</tr>
+					
+					</table>
+					
+				</div>
+				<div class="playerList">
+					<g:VerticalPanel ui:field="matchesPanel"></g:VerticalPanel>
+				</div>	
+			</g:HTMLPanel>
+		</g:center>
+		
+		<g:east size="400">
+			<g:SimplePanel ui:field="newMatchPanel" styleName="editPlayerColumn"></g:SimplePanel>
+		</g:east>
+	
+	</g:DockLayoutPanel>
 	
 	
 </ui:UiBinder> 

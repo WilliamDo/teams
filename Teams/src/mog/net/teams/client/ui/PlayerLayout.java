@@ -8,6 +8,7 @@ import mog.net.teams.client.DataService;
 import mog.net.teams.client.DataServiceAsync;
 import mog.net.teams.client.Player;
 import mog.net.teams.client.event.ChangeViewEvent;
+import mog.net.teams.client.event.ChangeViewEvent.View;
 import mog.net.teams.client.event.LoadPlayerEvent;
 import mog.net.teams.client.event.LoadPlayerEventHandler;
 import mog.net.teams.client.event.NewPlayerEvent;
@@ -118,7 +119,7 @@ public class PlayerLayout extends Composite {
 	
 	@UiHandler("viewMatchesButton")
 	void onViewMatchesClick(ClickEvent e) {
-		this.eventBus.fireEvent(new ChangeViewEvent());
+		this.eventBus.fireEvent(new ChangeViewEvent(View.MATCHES));
 	}
 	
 

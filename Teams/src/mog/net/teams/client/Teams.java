@@ -2,6 +2,7 @@ package mog.net.teams.client;
 
 import mog.net.teams.client.event.ChangeViewEvent;
 import mog.net.teams.client.event.ChangeViewEventHandler;
+import mog.net.teams.client.event.ChangeViewEvent.View;
 import mog.net.teams.client.ui.HomeLayout;
 import mog.net.teams.client.ui.MatchListView;
 import mog.net.teams.client.ui.NewMatch;
@@ -44,8 +45,13 @@ public class Teams implements EntryPoint {
 			
 			@Override
 			public void onChangeView(ChangeViewEvent changeViewEvent) {
-				rootLayoutPanel.setWidgetVisible(playerLayoutView, false);
-				rootLayoutPanel.setWidgetVisible(matchListView, true);
+				if (changeViewEvent.getTargetView() == View.MATCHES) {
+					rootLayoutPanel.setWidgetVisible(playerLayoutView, false);
+					rootLayoutPanel.setWidgetVisible(matchListView, true);
+				} else if (changeViewEvent.getTargetView() == View.PLAYERS) {
+					rootLayoutPanel.setWidgetVisible(playerLayoutView, true);
+					rootLayoutPanel.setWidgetVisible(matchListView, false);
+				}
 			}
 		});
 		
