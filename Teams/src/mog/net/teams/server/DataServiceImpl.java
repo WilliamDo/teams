@@ -58,6 +58,11 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 			matchWrapper.setDate(match.getDate());
 			matchWrapper.setId(match.getId());
 			
+			// This is bad design
+			setImageServingUrl(match.getPlayer1());
+			setImageServingUrl(match.getPlayer2());
+			setImageServingUrl(match.getPlayer3());
+			
 			matchWrapper.setPlayer1(match.getPlayer1());
 			matchWrapper.setPlayer2(match.getPlayer2());
 			matchWrapper.setPlayer3(match.getPlayer3());
@@ -67,6 +72,14 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 		
 		return matches;
 				
+	}
+
+	private void setImageServingUrl(Player player) {
+		if (player != null) {
+			String servingUrl = imagesService.getServingUrl(withBlobKey(new BlobKey(player.getImageKey())));
+			player.setImageServingUrl(servingUrl);
+		}
+		
 	}
 
 	@Override

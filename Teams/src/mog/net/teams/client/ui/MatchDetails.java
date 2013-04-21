@@ -3,6 +3,7 @@ package mog.net.teams.client.ui;
 import mog.net.teams.shared.MatchWrapper;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -23,12 +24,15 @@ public class MatchDetails extends Composite {
 	interface MatchDetailsUiBinder extends UiBinder<Widget, MatchDetails> {
 	}
 	
+	private static final String SIZE = "=s160";
+	
 	@UiField Image imagePlayer1;
 	@UiField Image imagePlayer2;
 	@UiField Image imagePlayer3;
 	
-	@UiField SpanElement teamName;
-	@UiField SpanElement dateSpan;
+	@UiField DivElement teamName;
+	@UiField DivElement dateSpan;
+	@UiField DivElement location;
 	
 	private final Long matchId;
 
@@ -36,19 +40,19 @@ public class MatchDetails extends Composite {
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		if (match.getPlayer1() != null) {
-			imagePlayer1.setUrl("/serveBlob?key=" + match.getPlayer1().getImageKey());
+			imagePlayer1.setUrl(match.getPlayer1().getImageServingUrl() + SIZE);
 		} else {
 			imagePlayer1.setUrl("/user.png");
 		}
 		
 		if (match.getPlayer2() != null) {
-			imagePlayer2.setUrl("/serveBlob?key=" + match.getPlayer2().getImageKey());
+			imagePlayer2.setUrl(match.getPlayer2().getImageServingUrl() + SIZE);
 		} else {
 			imagePlayer2.setUrl("/user.png");
 		}
 		
 		if (match.getPlayer3() != null) {
-			imagePlayer3.setUrl("/serveBlob?key=" + match.getPlayer3().getImageKey());
+			imagePlayer3.setUrl(match.getPlayer3().getImageServingUrl() + SIZE);
 		} else {
 			imagePlayer3.setUrl("/user.png");
 		}

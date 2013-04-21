@@ -3,7 +3,8 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style>
 		.matchPlayer {
-			padding-left: 3px;
+			padding-left: 5px;
+			padding-right: 5px;
 
 		}
 		
@@ -14,30 +15,65 @@
 			background-color: white;
 
 		}
+		
+		.matchHeader {
+			border-bottom: 1px solid gray;
+			margin-bottom: 10px;
+			padding-bottom: 10px;
+			overflow: auto;
+
+		}
+		
+		.locationThumbnail {
+			border: 1px solid gray;
+			display: inline-block;
+			line-height: 30px;
+			width: 30px;
+			float: left;
+			text-align: center;
+
+		}
+		
+		.teamNameContainer {
+			margin-left: 5px;
+			display: inline-block;
+			line-height: 32px;
+
+		}
+		
+		.dateContainer {
+			float: right;
+			line-height: 32px;
+			
+		}
 	</ui:style>
 	
-	<g:HorizontalPanel styleName="{style.matchContainer}">
-	
+	<g:VerticalPanel styleName="{style.matchContainer}">
 		<g:HTMLPanel>
-			<span ui:field="teamName"></span>
-			<span ui:field="dateSpan"></span>
+			<div class="{style.matchHeader}">
+				<div ui:field="location" class="{style.locationThumbnail}"><div>H</div></div>
+				<div ui:field="teamName" class="{style.teamNameContainer}"></div>
+				<div ui:field="dateSpan" class="{style.dateContainer}"></div>
+			</div>
 		</g:HTMLPanel>
-		
-		<g:VerticalPanel styleName="{style.matchPlayer}">
-			<g:Image ui:field="imagePlayer1"></g:Image>
-			<g:Button ui:field="choosePlayer1">Select</g:Button>
-		</g:VerticalPanel>
-		
-		<g:VerticalPanel styleName="{style.matchPlayer}">
-			<g:Image ui:field="imagePlayer2"></g:Image>
-			<g:Button ui:field="choosePlayer2">Select</g:Button>
-		</g:VerticalPanel>
-		
-		<g:VerticalPanel styleName="{style.matchPlayer}">
-			<g:Image ui:field="imagePlayer3"></g:Image>
-			<g:Button ui:field="choosePlayer3">Select</g:Button>
-		</g:VerticalPanel>
-		
-	</g:HorizontalPanel>
+		<g:HorizontalPanel>
+			<g:VerticalPanel styleName="{style.matchPlayer}">
+				<g:Image ui:field="imagePlayer1"></g:Image>
+				<g:Button ui:field="choosePlayer1">Select</g:Button>
+			</g:VerticalPanel>
+			
+			<g:VerticalPanel styleName="{style.matchPlayer}">
+				<g:Image ui:field="imagePlayer2"></g:Image>
+				<g:Button ui:field="choosePlayer2">Select</g:Button>
+			</g:VerticalPanel>
+			
+			<g:VerticalPanel styleName="{style.matchPlayer}">
+				<g:Image ui:field="imagePlayer3"></g:Image>
+				<g:Button ui:field="choosePlayer3">Select</g:Button>
+			</g:VerticalPanel>
+		</g:HorizontalPanel>
+	</g:VerticalPanel>
+	
+	
 
 </ui:UiBinder> 
