@@ -14,7 +14,16 @@ public class MatchWrapper implements Serializable {
 	private String team;
 	private Date date;
 	private Long id;
+	private VenueType venueType;
 	
+	public VenueType getVenueType() {
+		return venueType;
+	}
+
+	public void setVenueType(VenueType venueType) {
+		this.venueType = venueType;
+	}
+
 	public Date getDate() {
 		return date;
 	}

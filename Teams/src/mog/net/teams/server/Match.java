@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import mog.net.teams.client.Player;
+import mog.net.teams.shared.VenueType;
 
 import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
@@ -12,7 +13,7 @@ import com.googlecode.objectify.annotation.Load;
 
 @Entity
 public class Match implements Serializable {
-
+	
 	@Id Long id;
 	@Load Ref<Player> player1;
 	@Load Ref<Player> player2;
@@ -20,7 +21,16 @@ public class Match implements Serializable {
 	
 	String team;
 	Date date;
+	VenueType venueType;
 	
+	public VenueType getVenueType() {
+		return venueType;
+	}
+
+	public void setVenueType(VenueType venueType) {
+		this.venueType = venueType;
+	}
+
 	public Date getDate() {
 		return date;
 	}

@@ -5,6 +5,7 @@ import mog.net.teams.client.DataServiceAsync;
 import mog.net.teams.client.TeamsGinjector;
 import mog.net.teams.client.event.SaveMatchCompleteEvent;
 import mog.net.teams.shared.MatchWrapper;
+import mog.net.teams.shared.VenueType;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -18,6 +19,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.RadioButton;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.datepicker.client.DateBox;
@@ -35,6 +37,8 @@ public class NewMatch extends Composite {
 	
 	@UiField HTMLPanel dateControl;
 	@UiField TextBox teamName;
+	@UiField RadioButton radioHome;
+	@UiField RadioButton radioAway;
 	
 	private DateBox dateBox; 
 	
@@ -54,6 +58,16 @@ public class NewMatch extends Composite {
 	public void onSubmit(ClickEvent e) {
 		MatchWrapper match = new MatchWrapper(teamName.getText(), null, null, null);
 		match.setDate(dateBox.getValue());
+		
+		if (radioAway.getValue()) {
+			match.setVenueType(VenueType.AWAY);
+		} else if (radioHome.getValue()) {
+			match.setVenueType(VenueType.HOME);
+		} else {
+			Window.alert("Did not save because you haven't selected a venue");
+			return;
+		}
+		
 		dataService.saveMatch(match, new AsyncCallback<Void>() {
 			
 			@Override

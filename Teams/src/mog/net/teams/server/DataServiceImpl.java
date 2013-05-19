@@ -9,6 +9,7 @@ import java.util.List;
 import mog.net.teams.client.DataService;
 import mog.net.teams.client.Player;
 import mog.net.teams.shared.MatchWrapper;
+import mog.net.teams.shared.VenueType;
 
 import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.blobstore.BlobstoreService;
@@ -57,6 +58,7 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 			matchWrapper.setTeam(match.getTeam());
 			matchWrapper.setDate(match.getDate());
 			matchWrapper.setId(match.getId());
+			matchWrapper.setVenueType(match.getVenueType());
 			
 			// This is bad design
 			setImageServingUrl(match.getPlayer1());
@@ -87,6 +89,7 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 		Match match = new Match();
 		match.setTeam(newMatch.getTeam());
 		match.setDate(newMatch.getDate());
+		match.setVenueType(newMatch.getVenueType());
 		ofy().save().entity(match);
 		
 	}

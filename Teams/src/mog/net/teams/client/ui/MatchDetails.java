@@ -62,6 +62,9 @@ public class MatchDetails extends Composite {
 		
 		teamName.setInnerText(match.getTeam());
 		dateSpan.setInnerText(match.getDate().toString());
+		
+		location.setInnerText(match.getVenueType() != null ? match.getVenueType().getShortName() : "U");
+		
 	}
 	
 	@UiHandler("choosePlayer1")

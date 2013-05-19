@@ -17,8 +17,8 @@
 					<tr>
 						<td>Venue</td>
 						<td>
-							<g:RadioButton name="venue" text="Home"></g:RadioButton>
-							<g:RadioButton name="venue" text="Away"></g:RadioButton>
+							<g:RadioButton ui:field="radioHome" name="venue" text="Home"></g:RadioButton>
+							<g:RadioButton ui:field="radioAway" name="venue" text="Away"></g:RadioButton>
 						</td>
 					</tr>
 
